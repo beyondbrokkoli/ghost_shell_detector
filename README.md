@@ -2,8 +2,7 @@
 
 A lightweight Bash patch that notifies you when the current working directory was renamed or deleted in another terminal.
 
-## The Problem
-Linux file systems care about physical inodes, but Bash caches your logical path (`$PWD`). 
+## Reasonable Defaults
 
 If you have a terminal open in `my_project/`, and you rename that folder in another window, Bash won't tell you. It will keep showing `my_project/` in your prompt. If you edit files or `git commit`, you are silently working inside the newly renamed folder. This makes it look like your work vanished when you try to find it later.
 
