@@ -2,7 +2,6 @@
 
 If you have a terminal open in `my_project/`, and you rename that folder in another window, Bash won't tell you. It will keep showing `my_project/` in your prompt. If you edit files or `git commit`, you are silently working inside the newly renamed folder. This makes it look like your work vanished when you try to find it later.
 
-## The Solution
 This script hooks into Bash's `PROMPT_COMMAND` to check if your logical path matches physical reality every time you press enter. If the ground shifts beneath your feet, it drops a wall of doom so you know exactly where your files actually are.
 
 ```text
@@ -10,8 +9,8 @@ This script hooks into Bash's `PROMPT_COMMAND` to check if your logical path mat
                  WARNING: GHOST SHELL DETECTED                
  ============================================================ 
  Your logical path no longer matches physical reality.
- Bash thinks you are in: /home/halim/GHOST_DIRECTORY
- The directory was actually renamed to: /home/halim/SHADOW_WORLD
+ Bash thinks you are in: /home/user/GHOST_DIRECTORY
+ The directory was actually renamed to: /home/user/SHADOW_WORLD
  (Warning 1 of 3. Muting after limit reached.)
 
 ```
