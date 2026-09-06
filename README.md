@@ -1,3 +1,38 @@
+# Ghost Shell Detector
+
+A lightweight Bash patch that stops you from losing work when a directory is renamed or deleted in another terminal.
+
+## The Problem
+Linux file systems care about physical inodes, but Bash caches your logical path (`$PWD`). 
+
+If you have a terminal open in `my_project/`, and you rename that folder in another window, Bash won't tell you. It will keep showing `my_project/` in your prompt. If you edit files or `git commit`, you are silently working inside the newly renamed folder. This makes it look like your work vanished when you try to find it later.
+
+## The Solution
+This script hooks into Bash's `PROMPT_COMMAND` to check if your logical path matches physical reality every time you press enter. If the ground shifts beneath your feet, it drops a wall of doom so you know exactly where your files actually are.
+
+```text
+ ============================================================ 
+                 WARNING: GHOST SHELL DETECTED                
+ ============================================================ 
+ Your logical path no longer matches physical reality.
+ Bash thinks you are in: /home/halim/GHOST_DIRECTORY
+ The directory was actually renamed to: /home/halim/SHADOW_WORLD
+ (Warning 1 of 3. Muting after limit reached.)
+
+```
+
+## Installation
+
+1. Open your bash config:
+
+```bash
+nano ~/.bashrc
+
+```
+
+2. Paste this at the very bottom:
+
+```bash
 # Set how many times you want the red warning before it leaves you alone
 export GHOST_SHELL_MAX_WARNINGS=3
 
@@ -51,3 +86,15 @@ check_ghost_shell() {
 if [[ "$PROMPT_COMMAND" != *"check_ghost_shell"* ]]; then
     PROMPT_COMMAND="check_ghost_shell; $PROMPT_COMMAND"
 fi
+```
+
+3. Reload your config:
+
+```bash
+source ~/.bashrc
+
+```
+
+## Configuration
+
+Change `export GHOST_SHELL_MAX_WARNINGS=3` to whatever number you want. It will warn you X times before shutting up so you can continue working in the void if you really want to.
