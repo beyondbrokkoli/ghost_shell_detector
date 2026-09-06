@@ -1,6 +1,6 @@
 # Ghost Shell Detector
 
-A lightweight Bash patch that stops you from losing work when a directory is renamed or deleted in another terminal.
+A lightweight Bash patch that notifies you when the current working directory was renamed or deleted in another terminal.
 
 ## The Problem
 Linux file systems care about physical inodes, but Bash caches your logical path (`$PWD`). 
